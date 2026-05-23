@@ -9,6 +9,7 @@ const port = Number(process.env.PORT) || 3001;
 const allowedOrigins = [
   'http://localhost:3000',
   'http://127.0.0.1:3000',
+  'https://ai-app-gen-frontend.vercel.app',
   ...(process.env.FRONTEND_URL ? [process.env.FRONTEND_URL] : []),
 ];
 
