@@ -43,8 +43,10 @@ export default function DashboardPage() {
     const urlParams = new URLSearchParams(window.location.search);
     sub = urlParams.get('subdomain');
 
+    const isVercelDomain = hostname.endsWith('.vercel.app');
+
     // Check hostname subdomain (e.g. student-directory.localhost)
-    if (!sub && parts.length > 1 && parts[0] !== 'www' && parts[0] !== 'localhost' && parts[0] !== '127') {
+    if (!sub && !isVercelDomain && parts.length > 1 && parts[0] !== 'www' && parts[0] !== 'localhost' && parts[0] !== '127') {
       sub = parts[0];
     }
 
