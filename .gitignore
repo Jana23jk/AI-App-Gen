@@ -14,11 +14,14 @@
 /coverage
 
 # next.js
-/.next/
+.next/
+frontend/.next/
 /out/
+frontend/out/
 
 # production
 /build
+backend/dist/
 
 # misc
 .DS_Store
@@ -39,3 +42,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+backend/src/generated/prisma
+
+# cursor / agent tooling (not part of the app)
+.agents/
+skills-lock.json

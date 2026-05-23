@@ -1,0 +1,12 @@
+{
+  "name": "@ai-app/shared",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./types": "./src/types/appConfig.ts",
+    "./validators": "./src/validators/schemaValidator.ts"
+  }
+}
