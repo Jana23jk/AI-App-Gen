@@ -5,11 +5,24 @@ import appsRouter from './routes/apps';
 
 const app = express();
 const port = Number(process.env.PORT) || 3001;
-const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
+
+const allowedOrigins = [
+  'http://localhost:3000',
+  'http://127.0.0.1:3000',
+  ...(process.env.FRONTEND_URL ? [process.env.FRONTEND_URL] : []),
+];
 
 app.use(
   cors({
-    origin: [frontendUrl, 'http://localhost:3000', 'http://127.0.0.1:3000'],
+    origin: (origin, callback) => {
+      // Allow requests with no origin (e.g. curl, mobile apps)
+      if (!origin) return callback(null, true);
+      // Allow any vercel.app subdomain (covers preview deployments)
+      if (/^https:\/\/.*\.vercel\.app$/.test(origin)) return callback(null, true);
+      // Allow explicitly listed origins
+      if (allowedOrigins.includes(origin)) return callback(null, true);
+      callback(new Error(`CORS: origin ${origin} not allowed`));
+    },
     credentials: true,
   })
 );
